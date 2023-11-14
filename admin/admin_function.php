@@ -7,6 +7,7 @@ error_reporting(E_ALL);
 function getCategory($page, $with_limit = false)
 {
     $offset = ($page - 1) * LIMIT;
+    
     include "../database.php";
     $sql = "select * from category limit :offset, :limit";
     $state = $conn->prepare($sql);
