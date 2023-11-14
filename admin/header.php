@@ -1,5 +1,9 @@
-<!DOCTYPE "html">
-<html lang="en">
+<?php
+// header.php
+// ...
+?>
+<!--<!DOCTYPE "html">-->
+<!--<html lang="en">-->
 <head>
     <meta charset="utf-8">
     <title>News</title>
@@ -58,16 +62,16 @@
                 </div>
             </div>
             <div class="navbar-nav w-100">
-                <a href="/admin" class="nav-item nav-link <?php echo ($_SERVER['REQUEST_URI'] == '/PHP/admin/') ? 'active' : ''; ?>">
+                <a href="/admin" class="nav-item nav-link">
                     <i class="fa fa-tachometer-alt me-2"></i>Bosh sahifa
                 </a>
-                <a href="/php/admin/category.php" class="nav-item nav-link <?php echo (strpos($_SERVER['REQUEST_URI'], '/php/admin/category.php') !== false) ? 'active' : ''; ?>">
+                <a href="/php/admin/category.php" class="nav-item nav-link">
                     <i class="fa fa-th me-2"></i>Kategoriya
                 </a>
-                <a href="/php/admin/tag.php" class="nav-item nav-link <?php echo (strpos($_SERVER['REQUEST_URI'], '/php/admin/tag.php') !== false) ? 'active' : ''; ?>">
+                <a href="/php/admin/tag.php" class="nav-item nav-link ">
                     <i class="fa fa-keyboard me-2"></i>Taglar
                 </a>
-                <a href="/php/admin/news.php" class="nav-item nav-link <?php echo (strpos($_SERVER['REQUEST_URI'], '/php/admin/news.php') !== false) ? 'active' : ''; ?>">
+                <a href="/php/admin/news.php" class="nav-item nav-link">
                     <i class="fa fa-table me-2"></i>Yangiliklar
                 </a>
             </div>

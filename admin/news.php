@@ -1,5 +1,4 @@
 <?php
-
 include "header.php";
 include "admin_function.php";
 if (isset($_GET['page'])){
@@ -25,18 +24,20 @@ if (isset($_GET['page'])){
         <tr>
             <?php
             foreach (getNews($page) as $new){
+                $categery = getCategoryById($new->category_id);
+                $author = getAuthor($new->author_id);
                 ?>
                 <tr>
                 <td><?php echo $new->id?></td>
                 <td><?php echo $new->title?></td>
                 <td><?php echo $new->content?></td>
-                <td><?php echo $new->category_id?></td>
-                <td><?php echo $new->author_id?></td>
+                <td><?php echo $categery->title?></td>
+                <td><?php echo $author->firstname?></td>
                 <td><?php echo $new->visited_count?></td>
                 <td><?php echo $new->created_at?></td>
                 <td>
                     <a href="/php/admin/update_news.php?id=<?=$new->id?>" class="btn btn-primary">Tahrirlash</a>
-                    <a href="#<?=$new->id?>" class="ochirishBTN btn btn-danger">O'chirish</a>
+                    <a href="#<?=$new->id?>" class="newsochirishBTN btn btn-danger">O'chirish</a>
                 </td>
         </tr>
             <?php
