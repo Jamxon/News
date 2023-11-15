@@ -35,6 +35,13 @@
 </head>
 
 <body>
+<?php
+session_start();
+if (!isset($_SESSION['loginIn'])){
+    header("Location: /php/admin/login.php");
+    exit;
+}
+?>
 <div class="container-fluid position-relative d-flex p-0">
     <!-- Spinner Start -->
 <!--    <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">-->
@@ -169,7 +176,7 @@
                     <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                         <a href="#" class="dropdown-item">My Profile</a>
                         <a href="#" class="dropdown-item">Settings</a>
-                        <a href="#" class="dropdown-item">Log Out</a>
+                        <a href="/php/admin/logout.php" class="dropdown-item">Log Out</a>
                     </div>
                 </div>
             </div>

@@ -126,6 +126,10 @@ function getNews($page)
 }
 function addPost($title, $content, $category_id, $author_id, $tag = null){
         include "../database.php";
+        $title = htmlspecialchars($title);
+        $content = htmlspecialchars($content);
+        $category_id = htmlspecialchars($category_id);
+        $author_id = htmlspecialchars($author_id);
         $sql = "insert into post (title,content,category_id,author_id,created_at,updated_at,visited_count) 
         values (:title,:content,:category_id,:author_id,now(),now(),0)";
         $state = $conn->prepare($sql);
@@ -182,6 +186,10 @@ if (isset($_POST['news_update'])){
     $content = $_POST['content'];
     $category_id = $_POST['category_id'];
     $author_id = $_POST['author_id'];
+    $title = htmlspecialchars($title);
+    $content = htmlspecialchars($content);
+    $category_id = htmlspecialchars($category_id);
+    $author_id = htmlspecialchars($author_id);
     updateNews($id, $title, $content, $category_id, $author_id);
     header("Location: /PHP/admin/news.php");
     exit;
@@ -189,6 +197,10 @@ if (isset($_POST['news_update'])){
 function updateNews($id, $title, $content, $category_id, $author_id)
 {
     include "../database.php";
+    $title = htmlspecialchars($title);
+    $content = htmlspecialchars($content);
+    $category_id = htmlspecialchars($category_id);
+    $author_id = htmlspecialchars($author_id);
     $sql = "update post set title = :title, content = :content, category_id = :category_id, author_id = :author_id, updated_at = now() where id = :id";
     $state = $conn->prepare($sql);
     $state->bindParam(":id", $id, PDO::PARAM_INT);
@@ -205,8 +217,8 @@ function deleteNews($id)
     $state = $conn->prepare($sql);
     $state->bindParam(":id", $id);
     $state->execute();
-    header("Location: /php/admin/news.php");
-    exit;
+//    header("Location: /php/admin/news.php");
+//    exit;
 }
 function getTag($page, $with_limit = false)
 {

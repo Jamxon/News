@@ -18,6 +18,7 @@ if (isset($_GET['page'])){
             <th scope="col">Author</th>
             <th scope="col">Visited</th>
             <th scope="col">Created at</th>
+            <th scope="col">#</th>
         </tr>
         </thead>
         <tbody class="text-body-light">
