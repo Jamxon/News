@@ -82,9 +82,16 @@ if (isset($input_data['categoryID'])){
 if (isset($input_data['newsID'])){
     $newsID = $input_data['newsID'];
 }
+if (isset($input_data['tagID'])){
+    $tagID = $input_data['tagID'];
+}
 if (isset($newsID)){
     echo "$newsID";
     deleteNews($newsID);
+}
+if (isset($tagID)){
+    echo "$tagID";
+    deletetag($tagID);
 }
 if (isset($categoryID)){
     echo "$categoryID";
@@ -130,13 +137,17 @@ function addPost($title, $content, $category_id, $author_id, $tag = null){
         $content = htmlspecialchars($content);
         $category_id = htmlspecialchars($category_id);
         $author_id = htmlspecialchars($author_id);
-        $sql = "insert into post (title,content,category_id,author_id,created_at,updated_at,visited_count) 
-        values (:title,:content,:category_id,:author_id,now(),now(),0)";
+        $image = $_FILES['image']['name'];
+        $image_tmp = $_FILES['image']['tmp_name'];
+        move_uploaded_file($image_tmp, "../images/$image");
+        $sql = "insert into post (title,content,category_id,author_id,created_at,updated_at,visited_count,image) 
+        values (:title,:content,:category_id,:author_id,now(),now(),0,:image)";
         $state = $conn->prepare($sql);
         $state->bindParam(":title", $title);
         $state->bindParam(":content", $content);
         $state->bindParam(":category_id", $category_id);
         $state->bindParam(":author_id", $author_id);
+        $state->bindParam(":image", $image);
         $state->execute();
         $post_id = $conn->lastInsertId();
         if ($tag != null){
@@ -186,10 +197,12 @@ if (isset($_POST['news_update'])){
     $content = $_POST['content'];
     $category_id = $_POST['category_id'];
     $author_id = $_POST['author_id'];
+    $image = $_FILES['image']['name'];
     $title = htmlspecialchars($title);
     $content = htmlspecialchars($content);
     $category_id = htmlspecialchars($category_id);
     $author_id = htmlspecialchars($author_id);
+    $image = htmlspecialchars($image);
     updateNews($id, $title, $content, $category_id, $author_id);
     header("Location: /PHP/admin/news.php");
     exit;
@@ -201,13 +214,17 @@ function updateNews($id, $title, $content, $category_id, $author_id)
     $content = htmlspecialchars($content);
     $category_id = htmlspecialchars($category_id);
     $author_id = htmlspecialchars($author_id);
-    $sql = "update post set title = :title, content = :content, category_id = :category_id, author_id = :author_id, updated_at = now() where id = :id";
+    $image = $_FILES['image']['name'];
+    $sql = "update post set title = :title, content = :content,
+                category_id = :category_id, author_id = :author_id,
+                updated_at = now(), image = :image where id = :id";
     $state = $conn->prepare($sql);
     $state->bindParam(":id", $id, PDO::PARAM_INT);
     $state->bindParam(":title", $title);
     $state->bindParam(":content", $content);
     $state->bindParam(":category_id", $category_id);
     $state->bindParam(":author_id", $author_id);
+    $state->bindParam(":image", $image);
     $state->execute();
 }
 function deleteNews($id)
@@ -220,6 +237,7 @@ function deleteNews($id)
 //    header("Location: /php/admin/news.php");
 //    exit;
 }
+//----------------------tag functions-------------------
 function getTag($page, $with_limit = false)
 {
     $offset = ($page - 1) * LIMIT;
@@ -247,4 +265,38 @@ function addtag($name): void
 
 }
 
+function getTagById($id)
+{
+    include "../database.php";
+    $sql = "select * from tag where id = :id";
+    $state = $conn->prepare($sql);
+    $state->bindParam(":id", $id);
+    $state->execute();
+    $total_rows = $state->fetch(PDO::FETCH_OBJ);
+    return $total_rows;
+}
+if (isset($_POST['tag_update'])){
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    updateTag($id,$name);
+    header("Location: /php/admin/tag.php");
+}
+function updateTag($id, $name)
+{
+    include "../database.php";
+    $sql = "update tag set name = :name where id = :id";
+    $state = $conn->prepare($sql);
+    $state->bindParam(":id", $id, PDO::PARAM_INT);
+    $state->bindParam(":name", $name);
+    $state->execute();
+}
+
+function deletetag($id)
+{
+    include "../database.php";
+    $sql = "delete from tag where id = :id";
+    $state = $conn->prepare($sql);
+    $state->bindParam(":id", $id);
+    $state->execute();
+}
 ?>

@@ -286,3 +286,7 @@
     background: var(--dark);
     border-color: var(--primary);
 }
+.form-control{
+    width: 600px !important;
+    background-color: #191C24 !important;
+}

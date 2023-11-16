@@ -32,9 +32,94 @@
 <!-- Template Javascript -->
 <script src="./js/main.js"></script>
 <script>
-
+    "use strict";
     let ochirishBTN = document.querySelectorAll(".ochirishBTN");
     let newsochirishBTN = document.querySelectorAll(".newsochirishBTN");
+    let tagBTN = document.querySelectorAll(".tagBTN");
+
+    // tagBTN.forEach((button) => {
+    //     button.addEventListener("click", () => {
+    //         let tagID = button.getAttribute("href").substring(1);
+    //
+    //         swal({
+    //             title: "Are you sure?",
+    //             text: "Once deleted, you will not be able to recover this category!",
+    //             icon: "warning",
+    //             buttons: true,
+    //             dangerMode: true,
+    //         })
+    //             .then((willDelete) => {
+    //                 if (willDelete) {
+    //                     // Send an AJAX request to deleteCategory.php
+    //                     fetch('admin_function.php', {
+    //                         method: 'POST',
+    //                         headers: {
+    //                             'Content-Type': 'application/json',
+    //                         },
+    //                         body: JSON.stringify({
+    //                             tagID: tagID
+    //                         }),
+    //                     })
+    //                         .then(response => response.text())
+    //                         .then(data => {
+    //                             // console.log(data); // Log the response from the server
+    //                             swal("Poof! The category has been deleted!", {
+    //                                 icon: "success",
+    //                             }).then(() => {
+    //                                 window.location.reload();
+    //                             });
+    //                         })
+    //                         .catch(error => {
+    //                             console.error('Error:', error);
+    //                         });
+    //                 } else {
+    //                     swal("The category is safe!");
+    //                 }
+    //             });
+    //     });
+    // });
+
+    tagBTN.forEach((button) => {
+        button.addEventListener("click", () => {
+            let tagID = button.getAttribute("href").substring(1);
+
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this category!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        // Send an AJAX request to deleteCategory.php
+                        fetch('admin_function.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                tagID: tagID
+                            }),
+                        })
+                            .then(response => response.text())
+                            .then(data => {
+                                // console.log(data); // Log the response from the server
+                                swal("Poof! The category has been deleted!", {
+                                    icon: "success",
+                                }).then(() => {
+                                    window.location.reload();
+                                });
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                            });
+                    } else {
+                        swal("The category is safe!");
+                    }
+                });
+        });
+    });
 
     newsochirishBTN.forEach((button) => {
         button.addEventListener("click", () => {
@@ -123,7 +208,6 @@
 
 
 </script>
-
 </body>
 
 </html>

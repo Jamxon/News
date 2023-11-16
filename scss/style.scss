@@ -1,0 +1,16 @@
+@import "abstracts/general";
+@import "abstracts/colors";
+@import "abstracts/fonts";
+@import "abstracts/variables";
+@import "mixins";
+
+@import "components/container";
+@import "components/navbar";
+@import "components/footer";
+@import "components/ad";
+@import "components/newscard";
+@import "components/notifications";
+@import "components/world";
+
+@import "pages/article/article";
+@import "pages/contact/contact";

@@ -1,0 +1,15 @@
+.article_interest {
+  .interest_title {
+    @include title-text($text-black);
+    margin-top: 60px;
+    margin-bottom: 20px;
+  }
+  .news_cards {
+    align-items: stretch;
+    .article_card_3 {
+      .news_card_title {
+        width: 338px;
+      }
+    }
+  }
+}

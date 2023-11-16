@@ -1,0 +1,116 @@
+#notifications {
+  .container {
+    display: grid;
+    place-items: center;
+    .noti_wrapper {
+      width: 1050px;
+      display: flex;
+      justify-content: space-between;
+      background-image: url(../../images/adbg.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      margin-bottom: 60px;
+      padding: 25px;
+      flex-wrap: wrap;
+      gap: 20px;
+      border-radius: 10px;
+      .noti_title {
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 26px;
+      }
+      .button-label-container {
+        cursor: pointer;
+        button {
+          @include default-button(20px, $bg-orange, $text-white);
+          padding: 13px 30px;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+  .full_bg_wrapper {
+    background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 4;
+    display: grid;
+    place-items: center;
+    display: none;
+  }
+  .noti_modal {
+    display: grid;
+    place-items: center;
+    border-radius: 20px;
+    background: #fff;
+    max-width: 850px;
+    width: 95%;
+    padding: 50px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(calc(50vw - 50%), calc(50vh - 50%));
+    z-index: 6;
+    display: none;
+    i {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .modal_title {
+      text-align: center;
+      font-size: 26px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 34px;
+      margin-bottom: 25px;
+    }
+    .button-label {
+      cursor: pointer;
+      button {
+        @include default-button(24px, $bg-orange, $text-white);
+        padding: 15px 40px;
+        pointer-events: none;
+      }
+    }
+  }
+  #noti-check {
+    display: none;
+  }
+  #noti-check:checked ~ .full_bg_wrapper {
+    display: grid;
+  }
+  #noti-check:checked ~ .noti_modal {
+    display: grid;
+  }
+}
+
+@media only screen and (max-width: 1465px) {
+  .noti_wrapper {
+    width: 100% !important;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .noti_wrapper {
+    justify-content: center !important;
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  .modal_title {
+    font-size: 20px !important;
+  }
+  .button-label {
+    button {
+      font-size: 16px !important;
+    }
+  }
+}

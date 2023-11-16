@@ -1,0 +1,139 @@
+#contact {
+  margin-top: 60px;
+  margin-bottom: 100px;
+  .container {
+    .form_title {
+      @include title-text($text-black);
+      margin-bottom: 20px;
+    }
+    .contact_wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+      form {
+        width: 696px;
+        .form_body {
+          input {
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            background: #fff;
+            padding: 18px 20px;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            outline: none;
+          }
+          .sup_inputs {
+            max-width: 100%;
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+            .name_input {
+              max-width: 343px;
+              width: 100%;
+            }
+            .phone_input {
+              max-width: 343px;
+              width: 100%;
+            }
+          }
+          .email_input {
+            width: 100%;
+            margin-bottom: 10px;
+          }
+          textarea {
+            font-family: Rubik !important;
+            max-width: 100%;
+            width: 100%;
+            height: 180px;
+            padding: 18px 20px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            outline: none;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+          }
+          .form_button {
+            text-align: right;
+            button {
+              @include default-button(16px, $main-blue, $text-white);
+              padding: 17px 30px;
+            }
+          }
+        }
+      }
+      .contact_news {
+        max-width: 494px;
+        width: 100%;
+        .contact_cards {
+          width: 100%;
+          border-radius: 10px;
+          background: $bg-white;
+          padding: 40px 25px;
+          .contact_card {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #d2d2d2;
+            .contact_card_title {
+              @include card-title($text-black);
+              margin-bottom: 7px;
+            }
+            .contact_card_text {
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;
+              margin-bottom: 20px;
+            }
+            .last_card_text {
+              margin-bottom: 0 !important;
+            }
+            &:nth-child(3) {
+              border: none !important;
+              margin-bottom: 0 !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1680px) {
+  form {
+    max-width: 100% !important;
+    width: 100% !important;
+    .form_body {
+      .sup_inputs {
+        input {
+          max-width: 49% !important;
+        }
+      }
+    }
+  }
+  .contact_news {
+    max-width: 100% !important;
+  }
+}
+
+@media only screen and (max-width: 970px) {
+  form {
+    .form_body {
+      .sup_inputs {
+        .name_input {
+          max-width: 100% !important;
+        }
+        .phone_input {
+          max-width: 100% !important;
+        }
+      }
+    }
+  }
+}

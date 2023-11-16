@@ -17,6 +17,7 @@ if (isset($_GET['page'])){
             <th scope="col">Category</th>
             <th scope="col">Author</th>
             <th scope="col">Visited</th>
+            <th scope="col">Image</th>
             <th scope="col">Created at</th>
             <th scope="col">#</th>
         </tr>
@@ -24,18 +25,21 @@ if (isset($_GET['page'])){
         <tbody class="text-body-light">
         <tr>
             <?php
+            $i  = 0;
             foreach (getNews($page) as $new){
+                $i++;
                 $categery = getCategoryById($new->category_id);
                 $author = getAuthor($new->author_id);
                 ?>
                 <tr>
-                <td><?php echo $new->id?></td>
+                <td><?php echo $i?></td>
                 <td><?php echo $new->title?></td>
-                <td><?php echo $new->content?></td>
+                <td><?php echo substr($new->content,0,200)?></td>
                 <td><?php echo $categery->title?></td>
                 <td><?php echo $author->firstname?></td>
                 <td><?php echo $new->visited_count?></td>
                 <td><?php echo $new->created_at?></td>
+                <td><img src="../images/<?php echo $new->image?>" width="200px" alt=""></td>
                 <td>
                     <a href="/php/admin/update_news.php?id=<?=$new->id?>" class="btn btn-primary">Tahrirlash</a>
                     <a href="#<?=$new->id?>" class="newsochirishBTN btn btn-danger">O'chirish</a>

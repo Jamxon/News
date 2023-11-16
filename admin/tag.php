@@ -19,14 +19,16 @@ if (isset($_GET['page'])){
         <tbody class="text-body-light">
         <tr>
             <?php
+            $i = 0;
             foreach (getTag($page) as $category){
+                $i++;
             ?>
         <tr>
-            <td><?php echo $category->id?></td>
+            <td><?php echo $i?></td>
             <td><?php echo $category->name?></td>
             <td>
                 <a href="/php/admin/update_tag.php?id=<?=$category->id?>" class="btn btn-primary">Tahrirlash</a>
-                <a href="#<?=$category->id?>" class="ochirishBTN btn btn-danger">O'chirish</a>
+                <a href="#<?=$category->id?>" class="tagBTN btn btn-danger">O'chirish</a>
             </td>
         </tr>
         <?php

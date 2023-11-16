@@ -19,10 +19,12 @@ if (isset($_GET['page'])){
         <tbody class="text-body-light">
         <tr>
             <?php
+            $i = 0;
             foreach (getCategory($page) as $category){
+                $i++;
                 ?>
                 <tr>
-                <td><?php echo $category->id?></td>
+                <td><?php echo $i?></td>
                 <td><?php echo $category->title?></td>
                 <td>
                     <a href="/php/admin/update_category.php?id=<?=$category->id?>" class="btn btn-primary">Tahrirlash</a>

@@ -1,0 +1,28 @@
+@mixin title-text($color) {
+  color: $color;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+@mixin card-title($color) {
+  color: $color;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+}
+
+@mixin default-button($font-size, $bg-color, $text-color) {
+  font-size: $font-size;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: $bg-color;
+  color: $text-color;
+}
