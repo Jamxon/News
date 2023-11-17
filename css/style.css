@@ -1003,4 +1003,17 @@ footer .footer_wrapper .footer_bottom .footer_socials {
   }
 }
 
+.pagination .page-item {
+  transition: .3s all ease-in-out !important;
+  cursor: pointer !important;
+}
+
+.pagination .page-item:hover {
+  background-color: #333 !important;
+}
+
+.pagination .page-item:hover .page-link {
+  color: #fff !important;
+}
+
 /*# sourceMappingURL=style.css.map */

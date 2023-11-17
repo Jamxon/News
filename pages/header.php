@@ -56,6 +56,9 @@ include "function.php";
         <div class="sub_nav">
             <div class="container">
                 <ul>
+                    <li>
+                        <a href="/PHP/index.php">Asosiy</a>
+                    </li>
                 <?php
                     $category = getCategoryForIndex(1,true);
                     foreach ($category as $item){?>

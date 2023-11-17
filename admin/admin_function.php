@@ -131,23 +131,25 @@ function getNews($page)
     $news = $state->fetchAll(PDO::FETCH_OBJ);
     return $news;
 }
-function addPost($title, $content, $category_id, $author_id, $tag = null){
+function addPost($title, $content, $category_id, $author_id, $nashr, $tag = null ){
         include "../database.php";
         $title = htmlspecialchars($title);
         $content = htmlspecialchars($content);
         $category_id = htmlspecialchars($category_id);
         $author_id = htmlspecialchars($author_id);
+        $nashr = htmlspecialchars($nashr);
         $image = $_FILES['image']['name'];
         $image_tmp = $_FILES['image']['tmp_name'];
         move_uploaded_file($image_tmp, "../images/$image");
-        $sql = "insert into post (title,content,category_id,author_id,created_at,updated_at,visited_count,image) 
-        values (:title,:content,:category_id,:author_id,now(),now(),0,:image)";
+        $sql = "insert into post (title,content,category_id,author_id,created_at,updated_at,visited_count,image,nashr_id) 
+        values (:title,:content,:category_id,:author_id,now(),now(),0,:image,:nashr_id)";
         $state = $conn->prepare($sql);
         $state->bindParam(":title", $title);
         $state->bindParam(":content", $content);
         $state->bindParam(":category_id", $category_id);
         $state->bindParam(":author_id", $author_id);
         $state->bindParam(":image", $image);
+        $state->bindParam(":nashr_id", $nashr);
         $state->execute();
         $post_id = $conn->lastInsertId();
         if ($tag != null){
@@ -198,16 +200,17 @@ if (isset($_POST['news_update'])){
     $category_id = $_POST['category_id'];
     $author_id = $_POST['author_id'];
     $image = $_FILES['image']['name'];
+    $nashr = $_POST['nashr_id'];
     $title = htmlspecialchars($title);
     $content = htmlspecialchars($content);
     $category_id = htmlspecialchars($category_id);
     $author_id = htmlspecialchars($author_id);
     $image = htmlspecialchars($image);
-    updateNews($id, $title, $content, $category_id, $author_id);
+    updateNews($id, $title, $content, $category_id, $author_id,$nashr);
     header("Location: /PHP/admin/news.php");
     exit;
 }
-function updateNews($id, $title, $content, $category_id, $author_id)
+function updateNews($id, $title, $content, $category_id, $author_id, $nashr)
 {
     include "../database.php";
     $title = htmlspecialchars($title);
@@ -217,7 +220,7 @@ function updateNews($id, $title, $content, $category_id, $author_id)
     $image = $_FILES['image']['name'];
     $sql = "update post set title = :title, content = :content,
                 category_id = :category_id, author_id = :author_id,
-                updated_at = now(), image = :image where id = :id";
+                updated_at = now(), image = :image, nashr_id = :nashr where id = :id";
     $state = $conn->prepare($sql);
     $state->bindParam(":id", $id, PDO::PARAM_INT);
     $state->bindParam(":title", $title);
@@ -225,6 +228,7 @@ function updateNews($id, $title, $content, $category_id, $author_id)
     $state->bindParam(":category_id", $category_id);
     $state->bindParam(":author_id", $author_id);
     $state->bindParam(":image", $image);
+    $state->bindParam(":nashr", $nashr);
     $state->execute();
 }
 function deleteNews($id)
@@ -298,5 +302,15 @@ function deletetag($id)
     $state = $conn->prepare($sql);
     $state->bindParam(":id", $id);
     $state->execute();
+}
+
+function getNashr()
+{
+    include "../database.php";
+    $sql = "select * from nashr";
+    $state = $conn->prepare($sql);
+    $state->execute();
+    $total_rows = $state->fetchall(PDO::FETCH_OBJ);
+    return $total_rows;
 }
 ?>

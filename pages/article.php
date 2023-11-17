@@ -1,5 +1,10 @@
 <?php
 include 'header.php';
+if (isset($_GET['id'])){
+    $id = $_GET['id'];
+    $post = getPostById($id);
+    $nashr = getNashrById($post->nashr_id);
+}
 ?>
 <section id="article">
     <div class="container">
@@ -7,54 +12,34 @@ include 'header.php';
             <div class="article_news">
                 <div class="article_title">
                     <div class="article_sup_address">
-                        <img src="../images/yo.png" alt="yo" /> FBM.ru 22:23
+                        <img src="../images/<?=$nashr->img?>" alt="yo" /> <?php echo $nashr->title?>
                     </div>
                     <div class="article_main_title">
-                        Илон Маск принял участие во Всемирной сетевой конференции в
-                        Китае
+                        <?php echo $post->title?>
                     </div>
                 </div>
                 <img
                     class="article_img"
-                    src="../images/car.png"
+                    src="../images/<?=$post->image?>"
                     alt="article image"
                 />
                 <div class="article_lorem">
-                    Илон Маск (Elon Musk, Руководитель фирмы Tesla и других проектов)
-                    уже второй раз за полторы недели обратился к китайским правящим
-                    кругам и гражданам. В видеоролике он уверил их в своей готовности
-                    инвестировать средства в развитие и расширять бизнес на территории
-                    этой страны. Особое внимание будет уделяться небезопасности
-                    обрабатываемых данных.
+                    <?php echo substr($post->content,0,300)?>
                 </div>
                 <div class="article_lorem">
-                    Они будут храниться только в самом Китае и поэтому будут доступны
-                    правительству Поднебесной в любой момент.
+                    <?php echo substr($post->content,300,300)?>
                 </div>
                 <div class="article_lorem">
-                    Новые заявления Илон Маск сделал во время видеообращения к
-                    аудитории мероприятия World Internet Conference, которое прошло в
-                    конце недели в Поднебесной. Компанию ему составили руководители
-                    Cisco Systems (Чак Роббинс), Intel (Пэт Гелсингер) и Qualcomm
-                    (Кристиано Амон), а интересы бизнеса Китайской Народной Республики
-                    представляли руководители Alibaba и Xiaomi.
+                    <?php echo substr($post->content,600,300)?>
                 </div>
                 <div class="article_lorem">
-                    Открывал мероприятие Лю Хэ (Liu He, Вице-премьер Госсовета КНР),
-                    который привёл слова Си Цзиньпина (Xi Jinping) о стремлении
-                    Поднебесной работать со всеми державами над созданием прозрачной
-                    цифровой экономики.
+                    <?php echo substr($post->content,900,300)?>
                 </div>
                 <div class="article_lorem">
-                    В ближайшее время Tesla собирается не только сделать шире объёмы
-                    производства автомобилей на электрической тяге в шанхайском
-                    филиале, но и разработать силами местной студии недорогую модель
-                    электрического автомобиля (стоимостью менее 25 000 долларов).
+                    <?php echo substr($post->content,1200,300)?>
                 </div>
                 <div class="article_lorem">
-                    Уже в настоящий момент собранные в Китайской Народной Республике
-                    электрокары Tesla Model Y и Model 3 поставляются на экспорт в
-                    Европу.
+                    <?php echo substr($post->content,1500,300)?>
                 </div>
             </div>
             <div class="home_news">

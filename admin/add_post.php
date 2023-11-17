@@ -9,17 +9,19 @@ if (isset($_POST['add_post'])){
     $category_id = $_POST['category_id'];
     $author_id = $_POST['author_id'];
     $image = $_FILES['image']['name'];
+    $nashr_id = $_POST['nashr_id'];
     $title = htmlspecialchars($title);
     $content = htmlspecialchars($content);
     $category_id = htmlspecialchars($category_id);
     $author_id = htmlspecialchars($author_id);
     $image = htmlspecialchars($image);
+    $nashr_id = htmlspecialchars($nashr_id);
     if (isset($_POST['tag'])) {
         $tag = $_POST['tag'];
     }else{
         $tag = [];
     }
-    addPost($title, $content, $category_id, $author_id, $tag);
+    addPost($title, $content, $category_id, $author_id,$nashr_id, $tag );
     echo '<script>window.location.href = "/php/admin/news.php";</script>';
     exit;
 }
@@ -80,6 +82,18 @@ if (isset($_POST['add_post'])){
         <br><label for="image">
             <h5>Image</h5>
             <input type="file" name="image" id="image" class="form-control">
+</label><br>
+        <h5>Nashr</h5>
+        <select name="nashr_id" id="" class="form-control">
+            <?php
+                $nashr = getNashr();
+                foreach ($nashr as $nashr){
+                    ?>
+                    <option value="<?=$nashr->id?>"><?=$nashr->title?></option>
+                    <?php
+                }
+            ?>
+        </select>
         <br><button type="submit" name="add_post" class="btn btn-primary">Save</button>
     </form>
 </div>

@@ -14,7 +14,7 @@ if (isset($_GET['id'])) {
             <a href="/php/admin/add_post.php" class="btn btn-primary">Yangilik qo'shish</a>
             <thead class="thead-light">
             <tr>
-                <th scope="col">Id</th>
+                <th scope="col">Nashr</th>
                 <th scope="col">Title</th>
                 <th scope="col">Content</th>
                 <th scope="col">Category</th>
@@ -26,7 +26,18 @@ if (isset($_GET['id'])) {
                 $new = getNewsById($id);
                 ?>
             <tr>
-                <td><input type="hidden"  name="id" value="<?=$new->id?>"></td>
+                <td>
+                    <select name="nashr_id" id="">
+                        <?php
+                            $nashr = getNashr();
+                            foreach ($nashr as $nashr){
+                        ?>
+                        <option value="<?=$nashr->id?>"><?=$nashr->title?></option>
+                        <?php
+                            }
+                        ?>
+                    </select>
+                </td>
                 <td><input type="text"  name="title" value="<?php echo $new->title?>"></td>
                 <td><textarea name="content" id="" cols="30" rows="10"><?php echo $new->content?></textarea></td>
                 <td><select name="category_id" id="">

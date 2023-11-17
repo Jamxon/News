@@ -1,5 +1,10 @@
 <?php
 include "pages/header.php";
+if (isset($_GET['page'])){
+    $page = $_GET['page'];
+}else{
+    $page = 1;
+}
 ?>
 <section id="ad">
     <div class="container">
@@ -9,114 +14,42 @@ include "pages/header.php";
 <section id="news">
     <div class="container">
         <div class="news_cards">
-            <a href="./pages/article.html">
-                <div class="news_card">
-                    <div class="news_card_title">
-                        Кандидат на пост канцлера ФРГ Шольц назвал условия коалиционного
-                        соглашения
+            <?php
+            foreach (getPostForIndex($page) as $post){?>
+                <a href="./pages/article.php?id=<?=$post->id?>">
+                    <div class="news_card">
+                        <div class="news_card_title">
+                            <?php echo substr($post->title,0,80)?>
+                        </div>
+                        <div class="news_card_text">
+                            <?php echo substr($post->content, 0,150)?>
+                        </div>
+                        <div class="news_card_img">
+                            <img src="./images/<?=$post->image?>" alt="news image 1" />
+                        </div>
+                        <div class="news_card_footer">
+                                <?php
+                                $nashr = getNashrById($post->nashr_id);
+                                ?>
+                                <img src="./images/<?=$nashr->img?>" alt="" />
+                                <div><?=$nashr->title?></div>
+
+                        </div>
                     </div>
-                    <div class="news_card_text">
-                        Лидер Социал-демократической партии Германии (СДПГ) и кандидат
-                        на должность...
-                    </div>
-                    <div class="news_card_img">
-                        <img src="./images/news_card_1.png" alt="news image 1" />
-                    </div>
-                    <div class="news_card_footer">
-                        <img src="./images/kb.png" alt="kb" />
-                        <div class="news_card_date">ИА Красная Весна 15:55</div>
-                    </div>
-                </div>
-            </a>
-            <a href="./pages/article.html">
-                <div class="news_card">
-                    <div class="news_card_title">
-                        Ученые доказали экспериментальным путем пользу покровных культур
-                    </div>
-                    <div class="news_card_text">
-                        Новое исследование ученых университета Иллинойса объединяет
-                        полевые данные...
-                    </div>
-                    <div class="news_card_img">
-                        <img src="./images/news_card_2.png" alt="news image 1" />
-                    </div>
-                    <div class="news_card_footer">
-                        <img src="./images/g.png" alt="kb" />
-                        <div class="news_card_date">Газета.Ru 12:54</div>
-                    </div>
-                </div>
-            </a>
-            <a href="./pages/article.html">
-                <div class="news_card">
-                    <div class="news_card_title">
-                        Baidu запустила публичный сервис роботакси Apollo Go в Шанхае
-                    </div>
-                    <div class="news_card_text">
-                        Автопарк Baidu состоит из модифицированных электромобилей EV...
-                    </div>
-                    <div class="news_card_img">
-                        <img src="./images/news_card_3.png" alt="news image 1" />
-                    </div>
-                    <div class="news_card_footer">
-                        <img src="./images/x.png" alt="kb" />
-                        <div class="news_card_date">Хайтек+ 13:44</div>
-                    </div>
-                </div>
-            </a>
-            <a href="./pages/article.html"
-            ><div class="news_card">
-                    <div class="news_card_title">
-                        Стали известны ёмкости аккумуляторов всех моделей iPhone 13
-                    </div>
-                    <div class="news_card_text">
-                        Во время презентации iPhone 13 Apple придала большое значения...
-                    </div>
-                    <div class="news_card_img">
-                        <img src="./images/news_card_4.png" alt="news image 1" />
-                    </div>
-                    <div class="news_card_footer">
-                        <img src="./images/digger.png" alt="kb" />
-                        <div class="news_card_date">Digger.ru 14:25</div>
-                    </div>
-                </div></a
-            >
-            <a href="./pages/article.html">
-                <div class="news_card">
-                    <div class="news_card_title">
-                        Nature: ученые смогли доказать природное происхождение
-                        коронавируса SARS-CoV-2
-                    </div>
-                    <div class="news_card_text">
-                        Во время презентации iPhone 13 Apple придала большое значение...
-                    </div>
-                    <div class="news_card_img">
-                        <img src="./images/news_card_5.png" alt="news image 1" />
-                    </div>
-                    <div class="news_card_footer">
-                        <img src="./images/lenta.png" alt="kb" />
-                        <div class="news_card_date">Lenta.ru 10:54</div>
-                    </div>
-                </div>
-            </a>
-            <a href="./pages/article.html"
-            ><div class="news_card">
-                    <div class="news_card_title">
-                        Китайская марка JAC повысила цены на лифтбек и пикап в России
-                    </div>
-                    <div class="news_card_text">
-                        Две модели китайского бренда JAC из пяти, представленных на
-                        российском...
-                    </div>
-                    <div class="news_card_img">
-                        <img src="./images/news_card_6.png" alt="news image 1" />
-                    </div>
-                    <div class="news_card_footer">
-                        <img src="./images/tarantas.png" alt="kb" />
-                        <div class="news_card_date">Тарантас Ньюс 10:44</div>
-                    </div>
-                </div></a
-            >
+                </a>
+           <?php }
+            ?>
+                <nav aria-label="Page navigation example" style="text-align: center; width: 100%">
+                    <ul class="pagination" style="display: flex; justify-content: center; gap: 10px; margin-top:30px" >
+                        <?php
+                        for ($i = 1; $i <= getPaginationForIndex("post"); $i++ ){?>
+                            <li class="page-item" style="background-color: #fff; padding: 5px 10px; border: 1px solid #333"><a class="page-link" style="color: #333"  href="?page=<?= $i?>"><?= $i?></a></li>
+                        <?php }
+                        ?>
+                    </ul>
+                </nav>
         </div>
+
     </div>
 </section>
 <section id="notifications">
@@ -148,115 +81,45 @@ include "pages/header.php";
 </section>
 <section id="world">
     <div class="container">
-        <div class="world_title">В мире</div>
+        <div class="world_title">Dunyo</div>
         <div class="world_wrapper">
             <div class="world_news">
                 <div class="world_cards">
-                    <a href="./pages/article.html">
-                        <div class="world_card">
-                            <img
-                                class="world_news_img"
-                                src="./images/i1.png"
-                                alt="world news"
-                            />
-                            <div class="world_texts">
-                                <div class="world_news_title">
-                                    Китайский Чунцин запустил чартерный рейс для студентов до
-                                    Британии
+                    <?php
+                        $posts = getNewsByCategoryID(103);
+                        foreach ($posts as $post){?>
+                            <a href="./pages/article.php?id=<?=$post->id?>">
+                                <div class="world_card">
+                                    <img
+                                            class="world_news_img"
+                                            src="./images/<?=$post->image?>"
+                                            alt="world news"
+                                    />
+                                    <div class="world_texts">
+                                        <div class="world_news_title">
+                                            <?php echo substr($post->title, 0,100)?>
+                                        </div>
+                                        <div class="world_news_lorem">
+                                            <?php echo substr($post->content, 0,200)?>...
+                                        </div>
+                                        <div class="world_news_date">
+                                            <?php
+                                            $nashr = getNashrById($post->nashr_id);
+                                            ?>
+                                            <img src="./images/<?=$nashr->img?>" alt="" />
+                                            <div><?=$nashr->title?></div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="world_news_lorem">
-                                    Чартерный рейс с 244 китайскими студентами вылетел из
-                                    города центрального подчинения Чунцина на юго-западе Китая
-                                    в британский Манчестер...
-                                </div>
-                                <div class="world_news_date">
-                                    <img src="./images/kb.png" alt="" />
-                                    <div>ИА Красная Весна 12:25</div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="./pages/article.html">
-                        <div class="world_card">
-                            <img
-                                class="world_news_img"
-                                src="./images/i2.png"
-                                alt="world news"
-                            />
-                            <div class="world_texts">
-                                <div class="world_news_title">
-                                    В Германии выпустят ограниченную партию плюшевых мишек в
-                                    образе Меркель
-                                </div>
-                                <div class="world_news_lorem">
-                                    БЕРЛИН, 19 сентября. / ТАСС/. Знаменитая фабрика по
-                                    производству плюшевых игрушек в городе Кобург (федеральная
-                                    земля Бавария) изготовила уникального...
-                                </div>
-                                <div class="world_news_date">
-                                    <img src="./images/t.png" alt="" />
-                                    <div>ТАСС 11:35</div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="./pages/article.html">
-                        <div class="world_card">
-                            <img
-                                class="world_news_img"
-                                src="./images/i3.png"
-                                alt="world news"
-                            />
-                            <div class="world_texts">
-                                <div class="world_news_title">
-                                    Акции КНР утратили доверие инвесторов. Что делать с
-                                    бумагами прямо сейчас
-                                </div>
-                                <div class="world_news_lorem">
-                                    За последние месяцы инвесторы в китайский рынок пережили
-                                    настоящее потрясение — из-за ужесточения регулирования
-                                    технологического сектора и критики некоторых...
-                                </div>
-                                <div class="world_news_date">
-                                    <img src="./images/rbk.png" alt="" />
-                                    <div>РБК Инвестиции 09:35</div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="./pages/article.html">
-                        <div class="world_card">
-                            <img
-                                class="world_news_img"
-                                src="./images/i4.png"
-                                alt="world news"
-                            />
-                            <div class="world_texts">
-                                <div class="world_news_title">
-                                    Китай раскритиковал заключенный Австралией, США и
-                                    Великобританией антикитайский союз AUKUS
-                                </div>
-                                <div class="world_news_lorem">
-                                    Не только Франция, которая лишилась многомиллиардного
-                                    контракта с Австралий, осталась недовольна созданием
-                                    трехстороннего оборонного альянса AUKUS, пишет
-                                    Anna-News.info
-                                </div>
-                                <div class="world_news_date">
-                                    <img src="./images/yo.png" alt="" />
-                                    <div>Solenka.info 19:43</div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="world_news_button">
-                    <button>Показать ещё</button>
+                            </a>
+
+                        <?php }
+                    ?>
                 </div>
             </div>
             <div class="home_news">
                 <div class="home_card">
-                    <div class="home_card_title">Главное</div>
+                    <div class="home_card_title">Qiziqarli</div>
                     <div class="home_card_news">
                         <div class="home_news_title">
                             В Фергане создадут узбекско-пакистанский университет
