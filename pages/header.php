@@ -1,7 +1,7 @@
 <?php
 
 include "function.php";
-
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,11 +44,6 @@ include "function.php";
                             <div class="lang_uz">УЗ</div>
                             <div class="lang_ru">РУ</div>
                         </label>
-                    </div>
-                    <div class="nav_btn">
-                        <a href="../pages/contact.php">
-                            <button>Kirish uchun</button>
-                        </a>
                     </div>
                 </div>
             </div>

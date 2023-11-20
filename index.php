@@ -52,33 +52,33 @@ if (isset($_GET['page'])){
 
     </div>
 </section>
-<section id="notifications">
-    <input type="checkbox" id="noti-check" />
-    <label class="full_bg_wrapper" for="noti-check"> </label>
-    <div class="noti_modal">
-        <label for="noti-check">
-            <i class="fa-solid fa-xmark"></i>
-        </label>
-        <div class="modal_title">
-            Хотите быть в курсе свежих новостей? <br />
-            Включите уведомления!
-        </div>
-        <label for="noti-check" class="button-label">
-            <button type="button">Включит</button>
-        </label>
-    </div>
-    <div class="container">
-        <div class="noti_wrapper">
-            <div class="noti_title">
-                Хотите быть в курсе свежих новостей? <br />
-                Включите уведомления!
-            </div>
-            <label for="noti-check" class="button-label-container">
-                <button>Включит</button>
-            </label>
-        </div>
-    </div>
-</section>
+<!--<section id="notifications">-->
+<!--    <input type="checkbox" id="noti-check" />-->
+<!--    <label class="full_bg_wrapper" for="noti-check"> </label>-->
+<!--    <div class="noti_modal">-->
+<!--        <label for="noti-check">-->
+<!--            <i class="fa-solid fa-xmark"></i>-->
+<!--        </label>-->
+<!--        <div class="modal_title">-->
+<!--            Хотите быть в курсе свежих новостей? <br />-->
+<!--            Включите уведомления!-->
+<!--        </div>-->
+<!--        <label for="noti-check" class="button-label">-->
+<!--            <button type="button">Включит</button>-->
+<!--        </label>-->
+<!--    </div>-->
+<!--    <div class="container">-->
+<!--        <div class="noti_wrapper">-->
+<!--            <div class="noti_title">-->
+<!--                Хотите быть в курсе свежих новостей? <br />-->
+<!--                Включите уведомления!-->
+<!--            </div>-->
+<!--            <label for="noti-check" class="button-label-container">-->
+<!--                <button>Включит</button>-->
+<!--            </label>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
 <section id="world">
     <div class="container">
         <div class="world_title">Dunyo</div>
@@ -117,42 +117,9 @@ if (isset($_GET['page'])){
                     ?>
                 </div>
             </div>
-            <div class="home_news">
-                <div class="home_card">
-                    <div class="home_card_title">Qiziqarli</div>
-                    <div class="home_card_news">
-                        <div class="home_news_title">
-                            В Фергане создадут узбекско-пакистанский университет
-                        </div>
-                        <div class="home_news_date">Sputnik Узбекистан 14:09</div>
-                    </div>
-                    <div class="home_card_news">
-                        <div class="home_news_title">
-                            Узбекистан утвердил соглашение о содействии занятости в
-                            странах СНГ
-                        </div>
-                        <div class="home_news_date">ИА Красная Весна 10:19</div>
-                    </div>
-                    <div class="home_card_news">
-                        <div class="home_news_title">
-                            В Узбекистане увеличиваются очереди за автомобилями UzAuto
-                        </div>
-                        <div class="home_news_date">
-                            Северная газета (Армянск) 13:50
-                        </div>
-                    </div>
-                    <div class="home_card_news">
-                        <div class="home_news_title">
-                            Минтуризма опровергло приостановку выплат за шаги
-                        </div>
-                        <div class="home_news_date">Sputnik Узбекистан 14:32</div>
-                    </div>
-                </div>
-                <div class="home_ad">
-                    <img src="./images/ad2.png" alt="ad2" />
-                </div>
-            </div>
-        </div>
+            <?php
+                include "Qiziqarli.php";
+            ?>
     </div>
 </section>
 <?php

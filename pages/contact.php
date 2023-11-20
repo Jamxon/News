@@ -1,55 +1,34 @@
 <?php
+session_start();
 include "header.php";
+if (isset($_SESSION['loginIn'])) {
+    echo "<div> class='alert alert-success'>".$_SESSION['loginIn']."</div>";
+}else{
+    if (isset($_SESSION['login_error'])){
+        echo "<div class='alert alert-danger'>".$_SESSION['login_error']."</div>";
+        unset($_SESSION['login_error']);
+    }
+}
 ?>
 <section id="contact">
     <div class="container">
-        <div class="form_title">Напишите нам</div>
+        <div class="form_title">Login in</div>
         <div class="contact_wrapper">
-            <form action="send/">
+            <form action="login_check.php" method="post">
                 <div class="form_body">
                     <div class="sup_inputs">
-                        <input
-                            type="text"
-                            class="name_input"
-                            placeholder="Имя"
-                            required
-                        />
-                        <input
-                            type="text"
-                            class="phone_input"
-                            placeholder="Номер телефона"
-                            required
-                        />
+                        <input type="text" name="ism" class="name_input" placeholder="Ism" required />
+                        <input type="text" name="tel" class="phone_input" placeholder="Telefon nomer" required />
+                        <input type="email" name="email" class="email_input" placeholder="Email" required />
+                        <input type="password" name="password" class="password_input" placeholder="Password" required />
                     </div>
-                    <input
-                        type="email"
-                        class="email_input"
-                        placeholder="Электронная почта"
-                        required
-                    />
-                    <textarea placeholder="Текст"></textarea>
                     <div class="form_button">
-                        <button type="submit">Отправить</button>
+                        <button type="submit" name="loginIn">Login</button>
                     </div>
                 </div>
             </form>
             <div class="contact_news">
-                <div class="contact_cards">
-                    <div class="contact_card">
-                        <div class="contact_card_title">Электронная почта</div>
-                        <div class="contact_card_text">info@namanganliklar24.uz</div>
-                    </div>
-                    <div class="contact_card">
-                        <div class="contact_card_title">Номер телефона</div>
-                        <div class="contact_card_text">+998 88 522-54-76</div>
-                    </div>
-                    <div class="contact_card">
-                        <div class="contact_card_title">Адрес</div>
-                        <div class="contact_card_text last_card_text">
-                            Ташкент, площадь Мустакиллик, 6
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

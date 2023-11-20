@@ -57,41 +57,9 @@ include "header.php";
                     <button>Показать ещё</button>
                 </div>
             </div>
-            <div class="home_news">
-                <div class="home_card">
-                    <div class="home_card_title">Главное</div>
-                    <div class="home_card_news">
-                        <div class="home_news_title">
-                            В Фергане создадут узбекско-пакистанский университет
-                        </div>
-                        <div class="home_news_date">Sputnik Узбекистан 14:09</div>
-                    </div>
-                    <div class="home_card_news">
-                        <div class="home_news_title">
-                            Узбекистан утвердил соглашение о содействии занятости в
-                            странах СНГ
-                        </div>
-                        <div class="home_news_date">ИА Красная Весна 10:19</div>
-                    </div>
-                    <div class="home_card_news">
-                        <div class="home_news_title">
-                            В Узбекистане увеличиваются очереди за автомобилями UzAuto
-                        </div>
-                        <div class="home_news_date">
-                            Северная газета (Армянск) 13:50
-                        </div>
-                    </div>
-                    <div class="home_card_news">
-                        <div class="home_news_title">
-                            Минтуризма опровергло приостановку выплат за шаги
-                        </div>
-                        <div class="home_news_date">Sputnik Узбекистан 14:32</div>
-                    </div>
-                </div>
-                <div class="home_ad">
-                    <img src="../images/bigad.png" alt="ad2" />
-                </div>
-            </div>
+            <?php
+            include "../Qiziqarli.php";
+            ?>
         </div>
     </div>
 </section>
