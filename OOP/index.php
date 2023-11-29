@@ -1,8 +1,16 @@
 <?php
-class House{
-    public $primaryColor = "White";
-    public $secondaryColor = "Black";
-    public $roofColor = "Red";
+include 'Validator.php';
+
+class User{
+
+    public $name;
+    public $email;
+
+    public function save(){
+        $validator = new Validator();
+        $validator->validateEmail($this->email);
+        echo "Saving the user in the database";
+
+        return true;
+    }
 }
-$house1 = new House();
-echo $house1->secondaryColor;
